@@ -11,6 +11,7 @@ import {
 
 const CalendarGrid = ({ currentMonth, events, onDateClick }) => {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const [clickedDate, setClickedDate] = useState(null);
   const currentDate = new Date();
   const firstDayOfMonth = startOfMonth(
     new Date(currentDate.getFullYear(), currentMonth - 1, 1)
@@ -22,9 +23,8 @@ const CalendarGrid = ({ currentMonth, events, onDateClick }) => {
     start: startOfWeek(firstDayOfMonth),
     end: endOfWeek(lastDayOfMonth),
   });
-  console.log(daysOfMonth,'---')
+  // console.log(daysOfMonth,'---')
 
-  const [clickedDate, setClickedDate] = useState(null);
 
   const handleDateClick = (day) => {
     setClickedDate(day);
@@ -43,7 +43,7 @@ const CalendarGrid = ({ currentMonth, events, onDateClick }) => {
         const monthKey = format(day, "yyyy-MM");
         const isEventDate =
           events[monthKey] && events[monthKey][format(day, "yyyy-MM-dd")];
-
+        
         return (
           <div
             key={day.toISOString()}
@@ -60,7 +60,7 @@ const CalendarGrid = ({ currentMonth, events, onDateClick }) => {
             `}
             onClick={() => handleDateClick(day)}
           >
-            {format(day, "d")}
+            {format(day, "dd")}
           </div>
         );
       })}

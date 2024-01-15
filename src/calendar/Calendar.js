@@ -12,9 +12,11 @@ const Calendar = () => {
   const [showTaskBox, setShowTaskBox] = useState(false);
   const [eventInput, setEventInput] = useState("");
   const [events, setEvents] = useState({
-    "2023-12": {
-      "2023-12-05": "Meeting with client",
-      "2023-12-10": "Project deadline",
+    "2024-01": {
+      "2024-01-17": "Meeting with client",
+      "2024-01-19": "Project deadline",
+      "2024-01-25": " b day party ",
+      "2024-01-20": "ghar ",
       
     },
     
@@ -69,7 +71,7 @@ const Calendar = () => {
 
   return (
     <div className="container mx-auto my-8">
-      <div className="bg-white rounded shadow p-4">
+      <div className="bg-white rounded border border-red-300 mt-10 shadow-2xl p-4">
         
         
         <div className=" px-2">

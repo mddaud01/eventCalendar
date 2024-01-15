@@ -91,7 +91,7 @@ const TaskBox = ({
           </div>
         )}
       </div>
-     {isEditing&&  <div className="flex flex-col gap-2 ">
+       <div className="flex flex-col gap-2 ">
         {taskExists ? (
           <button
             className="bg-green-300 text-white p-1 rounded  "
@@ -107,13 +107,13 @@ const TaskBox = ({
              <i class="fa-solid fa-check"></i>
           </button>
         )}
-        <button
+      {!taskExists &&  <button
           className="border border-orange-200 text-orange-200  p-1 rounded "
           onClick={onClose}
         >
           <i class="fa-solid fa-eraser"></i>
-        </button>
-      </div>}
+        </button>}
+      </div>
     </div>
   );
 };

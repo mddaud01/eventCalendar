@@ -15,12 +15,33 @@ const UpcomingEvents = ({ events }) => {
   };
 
   // Get upcoming events
+ 
+  const getUpcomingEvents = (events, currentDate) => {
+    const upcomingEvents = [];
+  
+    // Iterate over months and events to find upcoming events
+    for (const monthKey in events) {
+      for (const dateKey in events[monthKey]) {
+        const eventDate = new Date(dateKey);
+        if (eventDate >= currentDate) {
+          upcomingEvents.push({
+            date: eventDate,
+            title: events[monthKey][dateKey],
+          });
+        }
+      }
+    }
+  
+    // Sort upcoming events by date
+    upcomingEvents.sort((a, b) => a.date - b.date);
+  
+    return upcomingEvents;
+  };
   const upcomingEvents = getUpcomingEvents(events, currentDate);
-
   return (
     <div className="mt-4">
-      <h2 className="text-xl font-bold mb-2">Upcoming Events</h2>
-      <div className="flex flex-wrap">
+      <h2 className="text-xl font-bold mb-2">Upcoming Events:-  {format(currentDate,'MM')} </h2>
+      <div className="flex flex-wrap justify-center items-center">
         {upcomingEvents.map(({ date, title }, index) => {
           const eventColor = getRandomColor(); // Generate a random color for each event
           return (
@@ -32,7 +53,7 @@ const UpcomingEvents = ({ events }) => {
               style={{ backgroundColor: eventColor }}
             >
               <div className="mr-2" style={{ fontSize: "90px" }}>
-                {format(date, "d")}
+                {format(date, "d" )}
               </div>
               <div>
                 <strong>{title}</strong>
@@ -46,26 +67,6 @@ const UpcomingEvents = ({ events }) => {
 };
 
 // Function to get upcoming events
-const getUpcomingEvents = (events, currentDate) => {
-  const upcomingEvents = [];
 
-  // Iterate over months and events to find upcoming events
-  for (const monthKey in events) {
-    for (const dateKey in events[monthKey]) {
-      const eventDate = new Date(dateKey);
-      if (eventDate >= currentDate) {
-        upcomingEvents.push({
-          date: eventDate,
-          title: events[monthKey][dateKey],
-        });
-      }
-    }
-  }
-
-  // Sort upcoming events by date
-  upcomingEvents.sort((a, b) => a.date - b.date);
-
-  return upcomingEvents;
-};
 
 export default UpcomingEvents;
